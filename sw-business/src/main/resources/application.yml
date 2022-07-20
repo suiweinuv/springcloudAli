@@ -1,0 +1,32 @@
+server:
+  port: 8091
+
+spring:
+
+  application:
+    name: service-business
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://110.42.139.52:3306/alibaba?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+dubbo:
+  registry:
+    address: spring-cloud://localhost # 注册中心
+  cloud:
+    subscribed-services: service-stock  # 订阅的提供者名称
+  consumer:
+    check: false    #关闭服务提供者是否开启检查，解决先启动消费者报错的问题
+    timeout: 30000
+

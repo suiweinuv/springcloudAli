@@ -1,0 +1,31 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: service-stock
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://110.42.139.52:3306/alibaba?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+dubbo:
+  scan:
+    base-packages: com.suiwei.service # 开启包扫描
+  protocols:
+    dubbo:
+      name: dubbo # 服务协议
+      port: -1 # 服务端口
+  registry:
+    address: spring-cloud://localhost # 注册中心
+
+
